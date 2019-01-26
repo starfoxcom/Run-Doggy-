@@ -40,7 +40,6 @@ public class scr_CsvReader
             textOutput += "\n";
         }
         Debug.Log(textOutput);
-        scr_Utilities.textGrid = textOutput;
     }
 
     // splits a CSV file into a 2D string array
