@@ -62,7 +62,6 @@ public class scr_MapGenerator
         }
 
         // Load file in the CSV Reader.
-
         CSVFileReader fileReader = new CSVFileReader(file.text);
         CSVRow row = new CSVRow();
 
