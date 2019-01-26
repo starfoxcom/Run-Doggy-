@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public class scr_MapGenerator
     : MonoBehaviour
@@ -10,6 +11,7 @@ public class scr_MapGenerator
     //////////////////////////////////////////////////////////////////////////
 
     public GameObject m_tile;
+    public Sprite[] sprites;
 
     //////////////////////////////////////////////////////////////////////////
     // Private Properties                                                   //
@@ -69,7 +71,10 @@ public class scr_MapGenerator
                                                 m_tileInitPosition.y + (rowCount * TILE_SIZE), 
                                                 0.0F);
 
-                GameObject.Instantiate(m_tile, tPosition, Quaternion.identity);
+                GameObject prefab = GameObject.Instantiate(m_tile, tPosition, Quaternion.identity);
+                
+                scr_Utilities.tileType x = scr_Utilities.GiveTileType(type);
+                prefab.GetComponent<SpriteRenderer>().sprite = sprites[scr_Utilities.setType(x)];
             }
             
         }
@@ -96,7 +101,7 @@ public class scr_MapGenerator
         // Init Tile Position.
         m_tileInitPosition = Vector3.zero;
 
-        LoadScene("test");
+        LoadScene("MapaTest");
 
         
         return;
