@@ -90,7 +90,7 @@ public class scr_Utilities : MonoBehaviour
             case "12":
             case "12\r":
                 {
-                    return tileType.calleUpLeft;
+                    return tileType.guardSpawner;
                 }
             case "13":
             case "13\r":

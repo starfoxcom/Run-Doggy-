@@ -14,7 +14,15 @@ public class scr_MapGenerator
     public Sprite[] sprites;
     public Sprite[] houses;
 
-    Vector3[] dogSpawns;
+    List<Vector3> dogSpawns;
+    List<Vector3> houseSpawns;
+    List<Vector3> enemySpawns;
+
+    public GameObject dog;
+    public GameObject house;
+    public GameObject[] enemies;
+
+    public int distanciaMinimaSpawn = 10;
 
     //////////////////////////////////////////////////////////////////////////
     // Private Properties                                                   //
@@ -118,6 +126,21 @@ public class scr_MapGenerator
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
                 }
+                else if(typeNumber == 12)
+                {
+                    tPosition.z = -0.1f;
+                    dogSpawns.Add(tPosition);
+                }
+                else if (typeNumber == 13)
+                {
+                    tPosition.z = -0.1f;
+                    enemySpawns.Add(tPosition);
+                }
+                else if (typeNumber == 11)
+                {
+                    tPosition.z = -0.1f;
+                    houseSpawns.Add(tPosition);
+                }
                 else
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
@@ -135,6 +158,38 @@ public class scr_MapGenerator
     //////////////////////////////////////////////////////////////////////////
     // Private Methods                                                      //
     //////////////////////////////////////////////////////////////////////////
+    void instanciateDog()
+    {
+        Instantiate(dog, dogSpawns[Random.Range(0,2)], Quaternion.identity);
+    }
+
+    void instanciateEnemies()
+    {
+        int pos1 = Random.Range(0, enemySpawns.Count - 1);
+        enemySpawns.RemoveAt(pos1);
+        int pos2 = Random.Range(0, enemySpawns.Count - 1);
+
+        Instantiate(enemies[0], enemySpawns[pos1], Quaternion.identity);
+        Instantiate(enemies[1], enemySpawns[pos2], Quaternion.identity);
+    }
+
+    void instanciateHouse()
+    {
+        int pos = Random.Range(0, houseSpawns.Count - 1);
+        float distancia = Vector3.Distance(dog.transform.position, houseSpawns[pos]);
+        Debug.Log(distancia);
+        if (distancia > distanciaMinimaSpawn)
+        {
+            Instantiate(house, houseSpawns[pos], Quaternion.identity);
+            return;
+        }
+        else
+        {
+            houseSpawns.RemoveAt(pos);
+            instanciateHouse();
+        }
+    }
+    
 
     void
     BuildScene(string[,] _gridData)
@@ -146,11 +201,18 @@ public class scr_MapGenerator
     Start()
     {
         // Init Tile Position.
+        dogSpawns = new List<Vector3>();
+        enemySpawns = new List<Vector3>();
+        houseSpawns = new List<Vector3>();
         m_tileInitPosition = Vector3.zero;
 
         LoadScene("MapaTest");
+        instanciateDog();
+        instanciateEnemies();
+        instanciateHouse();
 
-        
+
+
         return;
     }
     
