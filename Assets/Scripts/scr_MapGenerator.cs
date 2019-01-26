@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[RequireComponent(typeof(scr_CsvReader))]
-public class scr_MapGenerator 
+public class scr_MapGenerator
     : MonoBehaviour
 {
+    //////////////////////////////////////////////////////////////////////////
+    // Public Properties                                                    //
+    //////////////////////////////////////////////////////////////////////////
+
+    public GameObject m_tile;
+
     //////////////////////////////////////////////////////////////////////////
     // Private Properties                                                   //
     //////////////////////////////////////////////////////////////////////////
     private string[,] m_dataGrid;
+
+    private Vector3 m_tileInitPosition;
 
     //////////////////////////////////////////////////////////////////////////
     // Static Properties                                                    //
@@ -19,7 +25,7 @@ public class scr_MapGenerator
     /// <summary>
     /// Tamaño en pixeles del Tile que vamos a utilizar.
     /// </summary>
-    static int TILE_SIZE = 64;
+    static int TILE_SIZE = 1;
         
     //////////////////////////////////////////////////////////////////////////
     // Public Methods                                                       //
@@ -43,7 +49,30 @@ public class scr_MapGenerator
         }
 
         // Load file in the CSV Reader.
-        m_dataGrid = scr_CsvReader.SplitCsvGrid(file.text);
+
+        CSVFileReader fileReader = new CSVFileReader(file.text);
+        CSVRow row = new CSVRow();
+
+        int rowCount = -1;
+        int colCount = -1;
+
+        while(fileReader.ReadRow(row))
+        {
+            rowCount++;
+            colCount = -1;
+
+            foreach(string type in row)
+            {
+                colCount++;
+
+                Vector3 tPosition = new Vector3(m_tileInitPosition.x + (colCount * TILE_SIZE), 
+                                                m_tileInitPosition.y + (rowCount * TILE_SIZE), 
+                                                0.0F);
+
+                GameObject.Instantiate(m_tile, tPosition, Quaternion.identity);
+            }
+            
+        }
 
         // Build Scene
         BuildScene(m_dataGrid);
@@ -58,11 +87,18 @@ public class scr_MapGenerator
     void
     BuildScene(string[,] _gridData)
     {
+
     }
 
     void 
     Start()
     {
+        // Init Tile Position.
+        m_tileInitPosition = Vector3.zero;
+
+        LoadScene("test");
+
+        
         return;
     }
     
