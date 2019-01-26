@@ -14,7 +14,8 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-public class scr_CsvReader : MonoBehaviour
+public class scr_CsvReader 
+    : MonoBehaviour
 {
     public TextAsset csvFile;
     public void Start()
