@@ -27,6 +27,8 @@ public class scr_MapGenerator
 
     public int distanciaMinimaSpawn = 10;
 
+    private scr_DogController m_dogCntrl;
+
     //////////////////////////////////////////////////////////////////////////
     // Private Properties                                                   //
     //////////////////////////////////////////////////////////////////////////
@@ -250,10 +252,7 @@ public class scr_MapGenerator
                 }
             }
 
-        }
-
-        // Build Scene
-         DebugNodeGrid();
+        }               
 
         return;
     }
@@ -269,10 +268,11 @@ public class scr_MapGenerator
                                        node.POSITION, 
                                        Quaternion.identity) as GameObject;
 
-        scr_DogController dogCntrl = myDog.GetComponent<scr_DogController>();
+        scr_DogController dogCntrl = myDog.GetComponent<scr_DogController>();        
         if(dogCntrl == null)
         { return; }
 
+        m_dogCntrl = dogCntrl;
         dogCntrl.Init(node);
 
         Camera mainCam = Camera.main;
@@ -294,7 +294,14 @@ public class scr_MapGenerator
         enemySpawns.RemoveAt(pos1);
         int pos2 = Random.Range(0, enemySpawns.Count - 1);
 
-        Instantiate(enemies[0], enemySpawns[pos1].POSITION, Quaternion.identity);
+        GameObject enemy 
+            = Instantiate(enemies[0], 
+                          enemySpawns[pos1].POSITION, 
+                          Quaternion.identity) as GameObject;
+
+        scr_enemy_miguel miguelScript = enemy.GetComponent<scr_enemy_miguel>();
+        miguelScript.Init(m_dogCntrl, enemySpawns[pos1]);
+
         Instantiate(enemies[1], enemySpawns[pos2].POSITION, Quaternion.identity);
     }
 
@@ -319,7 +326,6 @@ public class scr_MapGenerator
             instanciateHouse();
         }
     }
-
 
     void
     DebugNodeGrid()
