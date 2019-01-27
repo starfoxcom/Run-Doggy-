@@ -35,9 +35,9 @@ public class scr_enemy_miguel
 
     public Animator m_animator;
 
-    public static float m_speed = 80.0f;
+    public float m_speed = 80.0f;
 
-    public static float SEARCH_TIME_LAPSE = 3.0f;
+    public float m_searchTime = 3.0f;
 
     //////////////////////////////////////////////////////////////////////////
     // Public Properties                                                    //

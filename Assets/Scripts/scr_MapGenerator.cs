@@ -314,7 +314,13 @@ public class scr_MapGenerator
         scr_enemy_miguel miguelScript = enemy.GetComponent<scr_enemy_miguel>();
         miguelScript.Init(m_dogCntrl, enemySpawns[pos1]);
 
-        Instantiate(enemies[1], enemySpawns[pos2].POSITION, Quaternion.identity);
+        enemy 
+            = Instantiate(enemies[1], 
+                          enemySpawns[pos2].POSITION, 
+                          Quaternion.identity) as GameObject;
+
+        miguelScript = enemy.GetComponent<scr_enemy_miguel>();
+        miguelScript.Init(m_dogCntrl, enemySpawns[pos2]);
     }
 
     void instanciateHouse()

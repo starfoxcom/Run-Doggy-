@@ -51,7 +51,7 @@ public class Scr_miguel_followPath
 
         Vector3 vectToTarget = m_miguel.m_target.POSITION - m_miguel.transform.position;
         m_miguel.m_direction = vectToTarget.normalized;
-        m_miguel.m_rb.velocity = m_miguel.m_direction * Time.deltaTime * scr_enemy_miguel.m_speed;
+        m_miguel.m_rb.velocity = m_miguel.m_direction * Time.deltaTime * m_miguel.m_speed;
         
         if (vectToTarget.magnitude < 0.05f)
         {
@@ -67,7 +67,7 @@ public class Scr_miguel_followPath
                 return;
             }
 
-            if (m_miguel.m_time >= scr_enemy_miguel.SEARCH_TIME_LAPSE)
+            if (m_miguel.m_time >= m_miguel.m_searchTime)
             {
                 m_miguel.m_fsm.SetState((int)MIGUEL_STATE.CalculatePath);
                 return;
