@@ -44,7 +44,7 @@ public class scr_MapGenerator
     /// Tamaño en pixeles del Tile que vamos a utilizar.
     /// </summary>
     static int TILE_SIZE = 1;
-        
+
     //////////////////////////////////////////////////////////////////////////
     // Public Methods                                                       //
     //////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@ public class scr_MapGenerator
     /// Loads a scene from file
     /// </summary>
     /// <param name="_fileName"></param>
-    public void 
+    public void
     LoadScene(string _fileName)
     {
         // Get File from Resoruces Folder.
@@ -61,7 +61,7 @@ public class scr_MapGenerator
         file = Resources.Load(_fileName) as TextAsset;
 
         // Check if file exists.
-        if(file == null)
+        if (file == null)
         {
             return;
         }
@@ -75,21 +75,21 @@ public class scr_MapGenerator
         int rowCount = -1;
         int colCount = -1;
 
-        while(fileReader.ReadRow(row))
+        while (fileReader.ReadRow(row))
         {
             rowCount++;
             colCount = -1;
 
-            foreach(string type in row)
+            foreach (string type in row)
             {
                 colCount++;
 
-                Vector3 tPosition = new Vector3(m_tileInitPosition.x + (colCount * TILE_SIZE), 
-                                                m_tileInitPosition.y - (rowCount * TILE_SIZE), 
+                Vector3 tPosition = new Vector3(m_tileInitPosition.x + (colCount * TILE_SIZE),
+                                                m_tileInitPosition.y - (rowCount * TILE_SIZE),
                                                 0.0F);
 
                 GameObject prefab = GameObject.Instantiate(m_tile, tPosition, Quaternion.identity);
-                
+
                 scr_Utilities.tileType x = scr_Utilities.GiveTileType(type);
                 int typeNumber = scr_Utilities.setType(x);
 
@@ -99,14 +99,39 @@ public class scr_MapGenerator
 
                 if (typeNumber == 8)//casa random
                 {
-                    int randomHouse = Random.Range(0,4);
+                    int randomHouse = Random.Range(0, 4);
+                    switch (randomHouse)
+                    {
+                        case 0:
+                            {
+                                prefab.tag = "house0";
+                                break;
+                            }
+                        case 1:
+                            {
+                                prefab.tag = "house1";
+                                break;
+                            }
+                        case 2:
+                            {
+                                prefab.tag = "house2";
+                                break;
+                            }
+                        case 3:
+                            {
+                                prefab.tag = "house3";
+                                break;
+                            }
+                        default:
+                            break;
+                    }
                     prefab.GetComponent<SpriteRenderer>().sprite = houses[randomHouse];
                     node.NODETYPE = NODE_TYPE.kBlock;
                 }
-                else if(typeNumber == 1) //calle horizontal
+                else if (typeNumber == 1) //calle horizontal
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
-                    prefab.transform.eulerAngles = new Vector3(0,0,90);
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 90);
                     node.NODETYPE = NODE_TYPE.kStreet;
                 }
                 else if (typeNumber == 2) //calle vertical
@@ -169,7 +194,7 @@ public class scr_MapGenerator
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
                     node.NODETYPE = NODE_TYPE.kStreet;
                 }
-                else if(typeNumber == 12) // Dog Spawn Point.
+                else if (typeNumber == 12) // Dog Spawn Point.
                 {
                     tPosition.z = -0.1f;
                     dogSpawns.Add(tPosition);
@@ -193,7 +218,7 @@ public class scr_MapGenerator
                     node.NODETYPE = NODE_TYPE.kBlock;
                 }
             }
-            
+
         }
 
         // Build Scene
@@ -207,7 +232,7 @@ public class scr_MapGenerator
     //////////////////////////////////////////////////////////////////////////
     void instanciateDog()
     {
-        Instantiate(dog, dogSpawns[Random.Range(0,2)], Quaternion.identity);
+        Instantiate(dog, dogSpawns[Random.Range(0, 2)], Quaternion.identity);
     }
 
     void instanciateEnemies()
@@ -236,7 +261,7 @@ public class scr_MapGenerator
             instanciateHouse();
         }
     }
-    
+
 
     void
     DebugNodeGrid()
@@ -251,10 +276,10 @@ public class scr_MapGenerator
                     Instantiate(m_prefabNode, node.POSITION, Quaternion.identity);
                 }
             }
-         }
+        }
     }
 
-    void 
+    void
     Start()
     {
         // Init Tile Position.
@@ -275,8 +300,8 @@ public class scr_MapGenerator
 
         return;
     }
-    
-    void 
+
+    void
     Update()
     { }
 }
