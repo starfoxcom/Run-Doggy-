@@ -32,8 +32,22 @@
     //////////////////////////////////////////////////////////////////////////
     // Public Methods                                                       //
     //////////////////////////////////////////////////////////////////////////
-    
-    public scr_Node(Vector3 _position, NODE_TYPE _type)
+
+    public scr_Node()
+    {
+        m_position = Vector3.zero;
+
+        m_up = null;
+        m_right = null;
+        m_down = null;
+        m_left = null;
+
+        m_type = NODE_TYPE.kNone;
+
+        return;
+    }
+
+        public scr_Node(Vector3 _position, NODE_TYPE _type)
     {
         m_position = _position;
 
@@ -44,6 +58,13 @@
 
         m_type = _type;
 
+        return;
+    }
+
+    public void
+    SetPosition(Vector3 _position)
+    {
+        m_position = _position;
         return;
     }
 
@@ -82,8 +103,8 @@
     /// <summary>
     /// Node Type.
     /// </summary>
-    NODE_TYPE
-    TYPE
+    public NODE_TYPE
+    NODETYPE
     {
         get
         { return m_type; }
@@ -94,35 +115,35 @@
     /// <summary>
     /// Node's position;
     /// </summary>
-    Vector3 
+    public Vector3 
     POSITION
     {
         get
         { return m_position; }
     }
 
-    scr_Node
+    public scr_Node
     UP
     {
         get
         { return m_up; }
     }
 
-    scr_Node
+    public scr_Node
     RIGHT
     {
         get
         { return m_right; }
     }
 
-    scr_Node
+    public scr_Node
     DOWN
     {
         get
         { return m_down; }
     }
 
-    scr_Node
+    public scr_Node
     LEFT
     {
         get

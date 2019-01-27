@@ -117,6 +117,40 @@ public class CSVFileReader
         // True if any row reads.
         return (_linesQueue.Count > 0);
     }
+
+    public int NUM_ROW
+    {
+        get
+        {
+            return _linesQueue.Count - 1;
+        }
+    }
+
+    public int NUM_COL
+    {
+        get
+        {
+            if(_linesQueue.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                string line = _linesQueue.Peek() as string;
+                int cont = 0;
+                foreach(char schar in line)
+                {
+                    if(schar == '0')
+                    {
+                        cont++;
+                    }
+                }
+
+                return cont;
+            }
+        }
+    }
+
 }
 
 public class CSVRow
