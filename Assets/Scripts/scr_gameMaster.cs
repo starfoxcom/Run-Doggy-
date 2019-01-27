@@ -36,6 +36,11 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
 
     public void update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if(m_paused)
         { return; }
 

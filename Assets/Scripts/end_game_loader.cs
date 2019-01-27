@@ -44,6 +44,10 @@ public class end_game_loader : MonoBehaviour
         }
 
         m_puntuacionText.text = "Score: " + scr_gameMaster.m_totalScore.ToString();
+        if (scr_gameMaster.GetSingleton().STATUS == GAMESTATUS.Lose)
+        {
+            scr_gameMaster.m_totalScore = 0;
+        }
     }
 
     private void Update()
