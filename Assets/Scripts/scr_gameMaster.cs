@@ -125,7 +125,7 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
 
         return;
     }
-
+    
     public void
     Pause(bool _setPause)
     {
@@ -133,7 +133,13 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
         return;
     }
 
-    private void
+    public bool
+    ISPAUSE
+    {
+        get { return m_paused; }
+    }
+
+    public void
     Lose()
     {
         if (m_gameStatus != GAMESTATUS.None)

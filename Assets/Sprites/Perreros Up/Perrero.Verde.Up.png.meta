@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: a1001984e4113154eb67dc90e9c03649
+guid: c1dd92c22f0bf7d4c9146df744493516
 TextureImporter:
   fileIDToRecycleName:
-    21300000: spr_residencialSpriteSheet_0
-    21300002: spr_residencialSpriteSheet_1
-    21300004: spr_residencialSpriteSheet_2
-    21300006: spr_residencialSpriteSheet_3
+    21300000: Perrero.Verde.Up_0
+    21300002: Perrero.Verde.Up_1
+    21300004: Perrero.Verde.Up_2
+    21300006: Perrero.Verde.Up_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -88,7 +88,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_residencialSpriteSheet_0
+      name: Perrero.Verde.Up_0
       rect:
         serializedVersion: 2
         x: 0
@@ -102,13 +102,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c52f37aad331244aa397303860c14bd
+      spriteID: 4e5e36fca8182364285730e920849c80
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_residencialSpriteSheet_1
+      name: Perrero.Verde.Up_1
       rect:
         serializedVersion: 2
         x: 64
@@ -122,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 546f5618907826d4f9328246ad770bc8
+      spriteID: e087c34db54bd4e4dbe3c55fdb93c19c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_residencialSpriteSheet_2
+      name: Perrero.Verde.Up_2
       rect:
         serializedVersion: 2
         x: 0
@@ -142,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a12b8d27f1ac7446b3db0e4eb10f587
+      spriteID: 80d7d96aa4c8bcc45a4b62f348ec9f32
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_residencialSpriteSheet_3
+      name: Perrero.Verde.Up_3
       rect:
         serializedVersion: 2
         x: 64
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be99962861cc8fa45bfd7a9cb850444e
+      spriteID: 78c4cbba295401d4493452c1ce3f6f76
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c0c2782f513f62e44a1742d9dafa8c3e
+    spriteID: a68c0ef7adf30d9419e5ead07ece3059
     vertices: []
     indices: 
     edges: []

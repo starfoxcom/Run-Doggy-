@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4490994089951085559}
   m_Layer: 0
   m_Name: dogPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.28125
+  m_Radius: 0.24
 --- !u!114 &2277367679795337724
 MonoBehaviour:
   m_ObjectHideFlags: 0

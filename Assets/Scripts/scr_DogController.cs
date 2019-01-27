@@ -56,6 +56,15 @@ public class scr_DogController
         return;
     }
 
+    public scr_Node
+    TARGET
+    {
+        get
+        {
+            return m_target;
+        }
+    }
+
     //////////////////////////////////////////////////////////////////////////
     // Private Methods                                                      //
     //////////////////////////////////////////////////////////////////////////
