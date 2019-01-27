@@ -19,7 +19,4 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
-.vs/Run doggy/v15/Server/sqlite3/db.lock
-.vs/Run doggy/v15/Server/sqlite3/storage.ide
-.vs/Run doggy/v15/Server/sqlite3/storage.ide-shm
-.vs/Run doggy/v15/Server/sqlite3/storage.ide-wal
+.vs
