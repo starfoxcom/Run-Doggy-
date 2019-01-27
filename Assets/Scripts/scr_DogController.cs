@@ -18,6 +18,7 @@ public enum DOGDIRECTION
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Animator))]
 public class scr_DogController 
     : MonoBehaviour
 {
@@ -35,9 +36,11 @@ public class scr_DogController
 
     private Rigidbody2D m_rb;
 
+    private Animator m_anim;
+
     static float MIN_RADIUS_NODE_DETECTION = 0.05f;
 
-    static float SPEED = 50.0f;
+    static float SPEED = 100.0f;
     
     //////////////////////////////////////////////////////////////////////////
     // Public Methods                                                       //
@@ -61,6 +64,8 @@ public class scr_DogController
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
+        m_anim = GetComponent<Animator>();
+
         return;
     }
 
@@ -92,7 +97,13 @@ public class scr_DogController
     private void 
     IdleUpdate()
     {
-        m_rb.velocity = Vector3.zero;        
+        m_rb.velocity = Vector3.zero;  
+        
+        if(m_directionIndex != DOGDIRECTION.None)
+        {
+            m_directionIndex = DOGDIRECTION.None;
+            m_anim.SetInteger("DirectionIndex", (int)DOGDIRECTION.None);
+        }
 
         if(transform.position != m_target.POSITION)
         {
@@ -131,6 +142,7 @@ public class scr_DogController
         if(Input.GetKeyDown(KeyCode.W))
         {
             m_directionIndex = DOGDIRECTION.Up;
+            m_anim.SetInteger("DirectionIndex", (int)DOGDIRECTION.Up);
             m_state = DOGPHASE.Moving;
             return;
         }
@@ -139,6 +151,7 @@ public class scr_DogController
         if (Input.GetKeyDown(KeyCode.S))
         {
             m_directionIndex = DOGDIRECTION.Down;
+            m_anim.SetInteger("DirectionIndex", (int)DOGDIRECTION.Down);
             m_state = DOGPHASE.Moving;
             return;
         }
@@ -147,6 +160,7 @@ public class scr_DogController
         if (Input.GetKeyDown(KeyCode.D))
         {
             m_directionIndex = DOGDIRECTION.Right;
+            m_anim.SetInteger("DirectionIndex", (int)DOGDIRECTION.Right);
             m_state = DOGPHASE.Moving;
             return;
         }
@@ -155,6 +169,7 @@ public class scr_DogController
         if (Input.GetKeyDown(KeyCode.A))
         {
             m_directionIndex = DOGDIRECTION.Left;
+            m_anim.SetInteger("DirectionIndex", (int)DOGDIRECTION.Left);
             m_state = DOGPHASE.Moving;
             return;
         }
@@ -163,6 +178,11 @@ public class scr_DogController
     private void
     NodeCollision()
     {
+        if(m_target.NODETYPE == NODE_TYPE.kHouse)
+        {
+            scr_gameMaster.GetSingleton().Win();
+        }
+
         switch(m_directionIndex)
         {
             case DOGDIRECTION.Up:
@@ -172,7 +192,8 @@ public class scr_DogController
                     return;
                 }
 
-                if (m_target.UP.NODETYPE == NODE_TYPE.kStreet)
+                if (m_target.UP.NODETYPE == NODE_TYPE.kStreet
+                    || m_target.UP.NODETYPE == NODE_TYPE.kHouse)
                 {
                     m_target = m_target.UP;
                     return;
@@ -189,7 +210,8 @@ public class scr_DogController
                     return;
                 }
 
-                if (m_target.RIGHT.NODETYPE == NODE_TYPE.kStreet)
+                if (m_target.RIGHT.NODETYPE == NODE_TYPE.kStreet
+                    || m_target.RIGHT.NODETYPE == NODE_TYPE.kHouse)
                 {
                     m_target = m_target.RIGHT;
                     return;
@@ -206,7 +228,8 @@ public class scr_DogController
                     return;
                 }
 
-                if (m_target.DOWN.NODETYPE == NODE_TYPE.kStreet)
+                if (m_target.DOWN.NODETYPE == NODE_TYPE.kStreet
+                    || m_target.DOWN.NODETYPE == NODE_TYPE.kHouse)
                 {
                     m_target = m_target.DOWN;
                     return;
@@ -216,7 +239,6 @@ public class scr_DogController
                     m_state = DOGPHASE.Idle;
                     return;
                 }
-                return;
             case DOGDIRECTION.Left:
                 if (m_target.LEFT == null)
                 {
@@ -224,7 +246,8 @@ public class scr_DogController
                     return;                    
                 }
 
-                if(m_target.LEFT.NODETYPE == NODE_TYPE.kStreet)
+                if(m_target.LEFT.NODETYPE == NODE_TYPE.kStreet
+                    || m_target.LEFT.NODETYPE == NODE_TYPE.kHouse)
                 {
                     m_target = m_target.LEFT;
                     return;

@@ -301,11 +301,16 @@ public class scr_MapGenerator
     void instanciateHouse()
     {
         int pos = Random.Range(0, houseSpawns.Count - 1);
-        float distancia = Vector3.Distance(dog.transform.position, houseSpawns[pos].POSITION);
-        Debug.Log(distancia);
+
+        scr_Node node = houseSpawns[pos];
+        float distancia = Vector3.Distance(dog.transform.position, node.POSITION);
         if (distancia > distanciaMinimaSpawn)
-        {
-            Instantiate(house, houseSpawns[pos].POSITION, Quaternion.identity);
+        {             
+            GameObject myHouse = Instantiate(house, 
+                                             houseSpawns[pos].POSITION, 
+                                             Quaternion.identity) as GameObject;
+
+            node.NODETYPE = NODE_TYPE.kHouse;
             return;
         }
         else

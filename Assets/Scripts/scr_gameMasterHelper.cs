@@ -32,7 +32,7 @@ public class scr_gameMasterHelper : MonoBehaviour
                 tile.GetComponent<SpriteRenderer>().sprite = sprites[0];
             }
         }
-        else if (m_fase == FASEDIA.mediaNoche) //areglar eso deberia estar en fase.noche
+        else if (m_fase == FASEDIA.noche) //areglar eso deberia estar en fase.noche
         {
             foreach (GameObject tile in objetos)
             {

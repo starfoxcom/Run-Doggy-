@@ -14,9 +14,7 @@ public class scr_CameraFollow : MonoBehaviour
     }
 
     void Start()
-    {
-        m_target = null;
-    }
+    { }
     
     void Update()
     {

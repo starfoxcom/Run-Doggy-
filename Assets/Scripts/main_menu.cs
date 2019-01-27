@@ -16,6 +16,9 @@ public class main_menu : MonoBehaviour
             
             //Disable canvas
             canvas.SetActive(false);
+
+            //Unpause Game
+            scr_gameMaster.GetSingleton().Pause(false);
         }
         
     }

@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class end_game_loader : MonoBehaviour
 {
 
-    public GameObject [] endsprite; //sprite array
-    public bool win; //win bool state
+    public GameObject [] endsprite; //sprite array    
 
     // Start is called before the first frame update
     void Start()
     {
         
         //On win
-        if(win)
+        if(scr_gameMaster.GetSingleton().STATUS == GAMESTATUS.Win)
         {
 
             //Enable sprite 0
@@ -26,6 +26,14 @@ public class end_game_loader : MonoBehaviour
 
             //Enable sprite 1
             endsprite[1].GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

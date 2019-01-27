@@ -42,6 +42,5 @@ public class load_async : MonoBehaviour
   {
 
     timeLeft -= Time.deltaTime;
-    Debug.Log(timeLeft);
   }
 }
