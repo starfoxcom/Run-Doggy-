@@ -187,7 +187,7 @@ public class scr_MapGenerator
                 else if (typeNumber == 10) //reloj
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
-                    prefab.transform.eulerAngles = new Vector3(0, 0, 90);
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 0);
                     prefab.tag = "reloj";
                 }
                 else if (typeNumber == 14) //calle codo
@@ -220,21 +220,28 @@ public class scr_MapGenerator
                 }
                 else if (typeNumber == 12) // Dog Spawn Point.
                 {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[9];//poner cesped
                     tPosition.z = -0.1f;
                     node.NODETYPE = NODE_TYPE.kStreet;
                     dogSpawns.Add(node);
+                    prefab.tag = "cesped";
                 }
                 else if (typeNumber == 13) // Enemy House Spawn Point.
                 {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[9];//poner cesped
                     tPosition.z = -0.1f;
                     node.NODETYPE = NODE_TYPE.kStreet;
                     enemySpawns.Add(node);
+                    prefab.tag = "cesped";
                 }
                 else if (typeNumber == 11) // Dog House Spawn Point.
                 {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[9];//poner cesped
                     tPosition.z = -0.1f;
                     node.NODETYPE = NODE_TYPE.kStreet;
                     houseSpawns.Add(node);
+                    prefab.tag = "cesped";
+
                 }
                 else
                 {
@@ -274,7 +281,7 @@ public class scr_MapGenerator
             scr_CameraFollow camFollow = mainCam.GetComponent<scr_CameraFollow>();
             if(camFollow != null)
             {
-                camFollow.SetTarget(dog.transform);
+                camFollow.SetTarget(myDog.transform);
             }
         }
 

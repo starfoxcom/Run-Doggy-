@@ -51,3 +51,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: overTheMap
+    uniqueID: 2942686879
+    locked: 0
