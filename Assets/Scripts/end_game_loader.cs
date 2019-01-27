@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class end_game_loader : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class end_game_loader : MonoBehaviour
     public GameObject [] endsprite; //sprite array   
     public AudioClip m_victorySound;
     public AudioClip m_loseSound;
+    public Text m_puntuacionText;
     private AudioSource m_bocina;
 
     // Start is called before the first frame update
@@ -26,6 +28,9 @@ public class end_game_loader : MonoBehaviour
             {
                 m_bocina.Play();
             }
+            scr_gameMaster.m_totalScore += -scr_gameMaster.m_score + 180;
+            Debug.Log(scr_gameMaster.m_totalScore);
+            scr_gameMaster.m_score = 0;
         }
 
         //Otherwise
@@ -36,6 +41,8 @@ public class end_game_loader : MonoBehaviour
             //endsprite[1].GetComponent<SpriteRenderer>().enabled = true;
             endsprite[1].SetActive(true);
         }
+
+        m_puntuacionText.text = "Score: " + scr_gameMaster.m_totalScore.ToString();
     }
 
     private void Update()

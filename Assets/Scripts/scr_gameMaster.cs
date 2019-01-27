@@ -29,6 +29,9 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
 
     private GAMESTATUS m_gameStatus = GAMESTATUS.None;
 
+    public static float m_score;
+    public static float m_totalScore;
+
     static float MAX_TIME = 180.0f;
 
     public void update()

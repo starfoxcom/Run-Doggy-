@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
-  timeLeft: 4.8
+  timeLeft: 3.4
 --- !u!1 &1171283381
 GameObject:
   m_ObjectHideFlags: 0

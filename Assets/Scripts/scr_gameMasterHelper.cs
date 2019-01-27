@@ -42,6 +42,16 @@ public class scr_gameMasterHelper : MonoBehaviour
         }
     }
 
+    float m_score = 0;
+
+    void Puntuacion()
+    {
+        if (m_master.STATUS == GAMESTATUS.None)
+        {
+            scr_gameMaster.m_score += Time.deltaTime;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +83,8 @@ public class scr_gameMasterHelper : MonoBehaviour
             ChangeSpritesColor("house3", house3Tiles);
             ChangeSpritesColor("dogHouse", dogHouseTiles);
         }
+
+        Puntuacion();
 
     }
 }
