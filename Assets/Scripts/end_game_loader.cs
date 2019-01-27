@@ -39,6 +39,7 @@ public class end_game_loader : MonoBehaviour
 
             //Enable sprite 1
             //endsprite[1].GetComponent<SpriteRenderer>().enabled = true;
+            endsprite[2].SetActive(true);
             endsprite[1].SetActive(true);
         }
 
