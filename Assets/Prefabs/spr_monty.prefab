@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5968741296025588174}
   - component: {fileID: 7952995749490802540}
   - component: {fileID: 3477655869490520586}
-  - component: {fileID: 1563508135539629692}
+  - component: {fileID: 7026440804564076997}
   m_Layer: 0
   m_Name: spr_monty
   m_TagString: Untagged
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_animator: {fileID: 0}
   m_speed: 60
   m_searchTime: 60
---- !u!95 &1563508135539629692
+--- !u!95 &7026440804564076997
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ Animator:
   m_GameObject: {fileID: 3708057230795738221}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 140db9ddff74c4240b66a1e35d1bd982, type: 2}
+  m_Controller: {fileID: 9100000, guid: fcc467d9da3bdf44c967e3ae2cc435ac, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
