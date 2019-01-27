@@ -17,7 +17,7 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
 
     private float m_ninepm;
 
-    static float MAX_TIME = 2.0f;
+    static float MAX_TIME = 15f;
 
     public void update()
     {

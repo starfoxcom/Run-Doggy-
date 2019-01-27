@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - house0
+  - house1
+  - house2
+  - house3
+  - interseccion
+  - cesped
+  - reloj
+  - codo
+  - calle
+  - T
   layers:
   - Default
   - TransparentFX

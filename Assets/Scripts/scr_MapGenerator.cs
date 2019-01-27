@@ -133,66 +133,90 @@ public class scr_MapGenerator
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "calle";
                 }
                 else if (typeNumber == 2) //calle vertical
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 0);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "calle";
                 }
-                else if (typeNumber == 3) //calle vertical
+                else if (typeNumber == 3) //calle interseccion
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 0);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "interseccion";
                 }
                 else if (typeNumber == 4) //calle Tright
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 0);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "T";
                 }
                 else if (typeNumber == 5) //calle Tleft
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, -90);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "T";
                 }
                 else if (typeNumber == 6) //calle Tup
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 180);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "T";
                 }
                 else if (typeNumber == 7) //calle Tdown
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "T";
+                }
+                else if (typeNumber == 9) //cesped
+                {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 90);
+                    node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "cesped";
+                }
+                else if (typeNumber == 10) //reloj
+                {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 90);
+                    prefab.tag = "reloj";
                 }
                 else if (typeNumber == 14) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 0);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "codo";
                 }
                 else if (typeNumber == 16) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, -90);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "codo";
                 }
                 else if (typeNumber == 17) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, -180);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "codo";
                 }
                 else if (typeNumber == 18) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
                     node.NODETYPE = NODE_TYPE.kStreet;
+                    prefab.tag = "codo";
                 }
                 else if (typeNumber == 12) // Dog Spawn Point.
                 {
