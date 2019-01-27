@@ -21,6 +21,8 @@ public class end_game_loader : MonoBehaviour
         if (scr_gameMaster.GetSingleton().STATUS == GAMESTATUS.Win)
         {
 
+            scr_gameMaster.GetSingleton().LEVEL = scr_gameMaster.GetSingleton().LEVEL + 1;
+
             //Enable sprite 0
             endsprite[0].GetComponent<SpriteRenderer>().enabled = true;
             m_bocina.clip = m_victorySound;

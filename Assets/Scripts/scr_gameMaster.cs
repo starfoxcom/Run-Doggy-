@@ -27,9 +27,14 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
 
     private bool m_paused;
 
+    private int m_level = 1;
+
     private GAMESTATUS m_gameStatus = GAMESTATUS.None;
 
+    private static int NUM_LEVELS = 2;
+
     public static float m_score;
+
     public static float m_totalScore;
 
     static float MAX_TIME = 180.0f;
@@ -108,6 +113,22 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
         m_paused = true;
     }
 
+    public int LEVEL
+    {
+        get { return m_level; }
+        set
+        {
+            if (value > NUM_LEVELS)
+            {
+                m_level = NUM_LEVELS;
+            }
+            else
+            {
+                m_level = value;
+            }
+        }
+    }
+
     public FASEDIA FASE
     {
         get { return m_fase; }
@@ -164,5 +185,4 @@ public class scr_gameMaster : CustomModule<scr_gameMaster>
     public override void SetFree()
     {
     }
-    
 }
