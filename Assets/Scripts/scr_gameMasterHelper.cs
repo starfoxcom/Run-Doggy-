@@ -16,6 +16,7 @@ public class scr_gameMasterHelper : MonoBehaviour
     public Sprite[] house1Tiles;
     public Sprite[] house2Tiles;
     public Sprite[] house3Tiles;
+    public Sprite[] dogHouseTiles;
 
     public GameObject Audio;
 
@@ -70,6 +71,7 @@ public class scr_gameMasterHelper : MonoBehaviour
             ChangeSpritesColor("house1", house1Tiles);
             ChangeSpritesColor("house2", house2Tiles);
             ChangeSpritesColor("house3", house3Tiles);
+            ChangeSpritesColor("dogHouse", dogHouseTiles);
         }
 
     }

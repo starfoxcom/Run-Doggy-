@@ -24,6 +24,7 @@ public class scr_MapGenerator
     public GameObject dog;
     public GameObject house;
     public GameObject[] enemies;
+    public GameObject manecillaReloj;
 
     public int distanciaMinimaSpawn = 10;
 
@@ -89,6 +90,11 @@ public class scr_MapGenerator
                                                 0.0F);
 
                 GameObject prefab = GameObject.Instantiate(m_tile, tPosition, Quaternion.identity);
+                prefab.AddComponent<BoxCollider>();
+
+                Color tmp = prefab.GetComponent<SpriteRenderer>().color;
+                tmp.a = 0;
+                prefab.GetComponent<SpriteRenderer>().color = tmp;
 
                 scr_Utilities.tileType x = scr_Utilities.GiveTileType(type);
                 int typeNumber = scr_Utilities.setType(x);
@@ -99,7 +105,7 @@ public class scr_MapGenerator
 
                 if (typeNumber == 8)//casa random
                 {
-                    int randomHouse = Random.Range(0, 4);
+                    int randomHouse = Random.Range(0, houses.Length);
                     switch (randomHouse)
                     {
                         case 0:
@@ -120,6 +126,11 @@ public class scr_MapGenerator
                         case 3:
                             {
                                 prefab.tag = "house3";
+                                break;
+                            }
+                        case 4:
+                            {
+                                prefab.tag = "house4";
                                 break;
                             }
                         default:
@@ -188,6 +199,7 @@ public class scr_MapGenerator
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    GameObject.Instantiate(manecillaReloj, new Vector3(prefab.transform.position.x, prefab.transform.position.y-0.15f, prefab.transform.position.z-0.1f), Quaternion.identity);
                     prefab.tag = "reloj";
                 }
                 else if (typeNumber == 14) //calle codo
@@ -226,7 +238,7 @@ public class scr_MapGenerator
                     dogSpawns.Add(node);
                     prefab.tag = "cesped";
                 }
-                else if (typeNumber == 13) // Enemy House Spawn Point.
+                else if (typeNumber == 13) // Enemy Spawn Point.
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[9];//poner cesped
                     tPosition.z = -0.1f;
@@ -309,6 +321,7 @@ public class scr_MapGenerator
             GameObject myHouse = Instantiate(house, 
                                              houseSpawns[pos].POSITION, 
                                              Quaternion.identity) as GameObject;
+            myHouse.tag = "dogHouse";
 
             node.NODETYPE = NODE_TYPE.kHouse;
             return;

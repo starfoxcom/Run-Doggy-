@@ -112,7 +112,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1007383940
+--- !u!1001 &484317600
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -122,7 +122,17 @@ PrefabInstance:
     - target: {fileID: 5080326060581976089, guid: 27dde2340e7dd5443b35c135dcac42c8,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: Canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080326060581976092, guid: 27dde2340e7dd5443b35c135dcac42c8,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1621716790}
+    - target: {fileID: 5080326060581976092, guid: 27dde2340e7dd5443b35c135dcac42c8,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1352280417
       objectReference: {fileID: 0}
     - target: {fileID: 5080326060581976093, guid: 27dde2340e7dd5443b35c135dcac42c8,
         type: 3}
@@ -229,21 +239,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5080326060581976092, guid: 27dde2340e7dd5443b35c135dcac42c8,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1621716790}
-    - target: {fileID: 5080326060581976092, guid: 27dde2340e7dd5443b35c135dcac42c8,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1352280417
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394453568655269261, guid: 27dde2340e7dd5443b35c135dcac42c8,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.78431374
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27dde2340e7dd5443b35c135dcac42c8, type: 3}
 --- !u!1 &1254343186
@@ -288,9 +283,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d7fdcd157da830447bf774109f4cbcaa, type: 3}
   - {fileID: 21300000, guid: d7fdcd157da830447bf774109f4cbcaa, type: 3}
   - {fileID: 21300000, guid: d7fdcd157da830447bf774109f4cbcaa, type: 3}
-  - {fileID: 21300000, guid: e4bcb04213260c44d8ec952d403fcc45, type: 3}
+  - {fileID: 21300000, guid: e15c2908d3b289e4495708f8c2808779, type: 3}
   - {fileID: 21300000, guid: f1175966a8556d9428b440e569afc551, type: 3}
-  - {fileID: 21300008, guid: e4bcb04213260c44d8ec952d403fcc45, type: 3}
+  - {fileID: 21300008, guid: e15c2908d3b289e4495708f8c2808779, type: 3}
   - {fileID: 21300000, guid: a1001984e4113154eb67dc90e9c03649, type: 3}
   - {fileID: 21300000, guid: f1175966a8556d9428b440e569afc551, type: 3}
   - {fileID: 21300000, guid: f1175966a8556d9428b440e569afc551, type: 3}
@@ -300,15 +295,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ad2bbe6fe4effe4469bca3201151f18e, type: 3}
   - {fileID: 21300000, guid: ad2bbe6fe4effe4469bca3201151f18e, type: 3}
   houses:
-  - {fileID: 21300000, guid: e4bcb04213260c44d8ec952d403fcc45, type: 3}
-  - {fileID: 21300002, guid: e4bcb04213260c44d8ec952d403fcc45, type: 3}
-  - {fileID: 21300004, guid: e4bcb04213260c44d8ec952d403fcc45, type: 3}
-  - {fileID: 21300006, guid: e4bcb04213260c44d8ec952d403fcc45, type: 3}
+  - {fileID: 21300000, guid: e15c2908d3b289e4495708f8c2808779, type: 3}
+  - {fileID: 21300002, guid: e15c2908d3b289e4495708f8c2808779, type: 3}
+  - {fileID: 21300004, guid: e15c2908d3b289e4495708f8c2808779, type: 3}
+  - {fileID: 21300006, guid: e15c2908d3b289e4495708f8c2808779, type: 3}
   dog: {fileID: 6469899153023963889, guid: 50c74bf742f24024e92341b0cb25011e, type: 3}
   house: {fileID: 6285205187212225650, guid: 8437ae50f1a501d4e8c75c8bc0cc6b57, type: 3}
   enemies:
   - {fileID: 8363945384176572911, guid: bfea248e73e33734b9845af6cd720031, type: 3}
   - {fileID: 3708057230795738221, guid: a7ac9526e0e1a164481e3f5973c70251, type: 3}
+  manecillaReloj: {fileID: 7018346565019319938, guid: ad8d3e6d17e69b4449c9a931415b2b90,
+    type: 3}
   distanciaMinimaSpawn: 30
 --- !u!4 &1254343188
 Transform:
@@ -516,7 +513,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -834,6 +831,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
+      propertyPath: house4Tiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
+        type: 3}
+      propertyPath: dogHouseTiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
+        type: 3}
       propertyPath: cespedTiles.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 0f762126d2464f34381d472573f116ce,
@@ -896,66 +903,90 @@ PrefabInstance:
         type: 3}
       propertyPath: house0Tiles.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 22062ffeaeec0cf4587d238986449e7c,
+      objectReference: {fileID: 21300000, guid: f62c0bb97b87c074fa1fe3456e28a2f3,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house0Tiles.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 57e7b32140977b3478a5a71441dd6e85,
+      objectReference: {fileID: 21300000, guid: 5c7ca3e665dfa4944b409efffda3cd9b,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house1Tiles.Array.data[0]
       value: 
-      objectReference: {fileID: 21300002, guid: 57e7b32140977b3478a5a71441dd6e85,
+      objectReference: {fileID: 21300002, guid: 5c7ca3e665dfa4944b409efffda3cd9b,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house1Tiles.Array.data[1]
       value: 
-      objectReference: {fileID: 21300002, guid: 22062ffeaeec0cf4587d238986449e7c,
+      objectReference: {fileID: 21300002, guid: f62c0bb97b87c074fa1fe3456e28a2f3,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house2Tiles.Array.data[0]
       value: 
-      objectReference: {fileID: 21300004, guid: 57e7b32140977b3478a5a71441dd6e85,
+      objectReference: {fileID: 21300004, guid: 5c7ca3e665dfa4944b409efffda3cd9b,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house2Tiles.Array.data[1]
       value: 
-      objectReference: {fileID: 21300004, guid: 22062ffeaeec0cf4587d238986449e7c,
+      objectReference: {fileID: 21300004, guid: f62c0bb97b87c074fa1fe3456e28a2f3,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house3Tiles.Array.data[0]
       value: 
-      objectReference: {fileID: 21300006, guid: 57e7b32140977b3478a5a71441dd6e85,
+      objectReference: {fileID: 21300006, guid: 5c7ca3e665dfa4944b409efffda3cd9b,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: house3Tiles.Array.data[1]
       value: 
-      objectReference: {fileID: 21300006, guid: 22062ffeaeec0cf4587d238986449e7c,
+      objectReference: {fileID: 21300006, guid: f62c0bb97b87c074fa1fe3456e28a2f3,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: relojTile.Array.data[1]
       value: 
-      objectReference: {fileID: 21300008, guid: 22062ffeaeec0cf4587d238986449e7c,
+      objectReference: {fileID: 21300008, guid: f62c0bb97b87c074fa1fe3456e28a2f3,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: relojTile.Array.data[0]
       value: 
-      objectReference: {fileID: 21300008, guid: 57e7b32140977b3478a5a71441dd6e85,
+      objectReference: {fileID: 21300008, guid: 5c7ca3e665dfa4944b409efffda3cd9b,
         type: 3}
     - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
         type: 3}
       propertyPath: Audio
       value: 
       objectReference: {fileID: 1826149868}
+    - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
+        type: 3}
+      propertyPath: house4Tiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300010, guid: 22062ffeaeec0cf4587d238986449e7c,
+        type: 3}
+    - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
+        type: 3}
+      propertyPath: house4Tiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300010, guid: 57e7b32140977b3478a5a71441dd6e85,
+        type: 3}
+    - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
+        type: 3}
+      propertyPath: dogHouseTiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300004, guid: cb9a4f40a07c5d541bbfde74a52c8f92,
+        type: 3}
+    - target: {fileID: 7739344473996265909, guid: 15cf928a318227e439767635cc88b2b6,
+        type: 3}
+      propertyPath: dogHouseTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300002, guid: cb9a4f40a07c5d541bbfde74a52c8f92,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15cf928a318227e439767635cc88b2b6, type: 3}

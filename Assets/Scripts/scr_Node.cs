@@ -29,6 +29,8 @@
 
     private scr_Node m_left;
 
+    public bool m_explored;
+
     //////////////////////////////////////////////////////////////////////////
     // Public Methods                                                       //
     //////////////////////////////////////////////////////////////////////////
@@ -43,7 +45,7 @@
         m_left = null;
 
         m_type = NODE_TYPE.kNone;
-
+        m_explored = false;
         return;
     }
 
@@ -57,7 +59,7 @@
         m_left =  null;
 
         m_type = _type;
-
+        m_explored = false;
         return;
     }
 

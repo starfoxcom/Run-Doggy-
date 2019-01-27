@@ -175,9 +175,35 @@ public class scr_DogController
         }
     }
 
+    static public float m_radio = 5;
     private void
     NodeCollision()
     {
+        //revisar si el nodo esta explorado
+        if (m_target.m_explored == false)
+        {
+            Collider[] objects = Physics.OverlapSphere(m_target.POSITION, m_radio);
+            foreach (Collider collider in objects)
+            {
+                float distance = Vector3.Distance(collider.transform.position, transform.position);
+                Color tmp = collider.GetComponent<SpriteRenderer>().color;
+                if (distance < m_radio * 0.4f)
+                {
+                    tmp.a = 1;
+                }
+                else if(distance < m_radio * 0.6f)
+                {
+                    tmp.a += 0.6f;
+                }
+                else if (distance < m_radio * 0.9f)
+                {
+                    tmp.a += 0.3f;
+                }
+                collider.GetComponent<SpriteRenderer>().color = tmp;
+            }
+            m_target.m_explored = true;
+        }
+
         if(m_target.NODETYPE == NODE_TYPE.kHouse)
         {
             scr_gameMaster.GetSingleton().Win();
