@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
+[RequireComponent(typeof(scr_NodeGrid))]
 public class scr_MapGenerator
     : MonoBehaviour
 {
@@ -11,8 +12,10 @@ public class scr_MapGenerator
     //////////////////////////////////////////////////////////////////////////
 
     public GameObject m_tile;
+    public GameObject m_prefabNode;
     public Sprite[] sprites;
     public Sprite[] houses;
+
 
     List<Vector3> dogSpawns;
     List<Vector3> houseSpawns;
@@ -30,6 +33,8 @@ public class scr_MapGenerator
     private string[,] m_dataGrid;
 
     private Vector3 m_tileInitPosition;
+
+    private scr_NodeGrid m_nodeGrid;
 
     //////////////////////////////////////////////////////////////////////////
     // Static Properties                                                    //
@@ -65,6 +70,8 @@ public class scr_MapGenerator
         CSVFileReader fileReader = new CSVFileReader(file.text);
         CSVRow row = new CSVRow();
 
+        m_nodeGrid.Init(fileReader.NUM_COL, fileReader.NUM_ROW);
+
         int rowCount = -1;
         int colCount = -1;
 
@@ -85,71 +92,112 @@ public class scr_MapGenerator
                 
                 scr_Utilities.tileType x = scr_Utilities.GiveTileType(type);
                 int typeNumber = scr_Utilities.setType(x);
+
+                // Setup NODE.
+                scr_Node node = m_nodeGrid.GetNode(rowCount, colCount);
+                node.SetPosition(tPosition);
+
                 if (typeNumber == 8)//casa random
                 {
                     int randomHouse = Random.Range(0,4);
                     prefab.GetComponent<SpriteRenderer>().sprite = houses[randomHouse];
+                    node.NODETYPE = NODE_TYPE.kBlock;
                 }
                 else if(typeNumber == 1) //calle horizontal
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0,0,90);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
-                else if (typeNumber == 5) //calle Tdown
+                else if (typeNumber == 2) //calle vertical
+                {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    node.NODETYPE = NODE_TYPE.kStreet;
+                }
+                else if (typeNumber == 3) //calle vertical
+                {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    node.NODETYPE = NODE_TYPE.kStreet;
+                }
+                else if (typeNumber == 4) //calle Tright
+                {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    node.NODETYPE = NODE_TYPE.kStreet;
+                }
+                else if (typeNumber == 5) //calle Tleft
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, -90);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
-                else if (typeNumber == 6) //calle Tdown
+                else if (typeNumber == 6) //calle Tup
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 180);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
                 else if (typeNumber == 7) //calle Tdown
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
+                    node.NODETYPE = NODE_TYPE.kStreet;
+                }
+                else if (typeNumber == 14) //calle codo
+                {
+                    prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    prefab.transform.eulerAngles = new Vector3(0, 0, 0);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
                 else if (typeNumber == 16) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, -90);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
                 else if (typeNumber == 17) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, -180);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
                 else if (typeNumber == 18) //calle codo
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
                     prefab.transform.eulerAngles = new Vector3(0, 0, 90);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
-                else if(typeNumber == 12)
+                else if(typeNumber == 12) // Dog Spawn Point.
                 {
                     tPosition.z = -0.1f;
                     dogSpawns.Add(tPosition);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
-                else if (typeNumber == 13)
+                else if (typeNumber == 13) // Enemy House Spawn Point.
                 {
                     tPosition.z = -0.1f;
                     enemySpawns.Add(tPosition);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
-                else if (typeNumber == 11)
+                else if (typeNumber == 11) // Dog House Spawn Point.
                 {
                     tPosition.z = -0.1f;
                     houseSpawns.Add(tPosition);
+                    node.NODETYPE = NODE_TYPE.kStreet;
                 }
                 else
                 {
                     prefab.GetComponent<SpriteRenderer>().sprite = sprites[typeNumber];
+                    node.NODETYPE = NODE_TYPE.kBlock;
                 }
             }
             
         }
 
         // Build Scene
-        BuildScene(m_dataGrid);
+        DebugNodeGrid();
 
         return;
     }
@@ -191,15 +239,28 @@ public class scr_MapGenerator
     
 
     void
-    BuildScene(string[,] _gridData)
+    DebugNodeGrid()
     {
-
+        for (int row = 0; row < m_nodeGrid.NUMROWS; ++row)
+        {
+            for (int col = 0; col < m_nodeGrid.NUMCOLS; ++col)
+            {
+                scr_Node node = m_nodeGrid.GetNode(row, col);
+                if (node.NODETYPE == NODE_TYPE.kStreet)
+                {
+                    Instantiate(m_prefabNode, node.POSITION, Quaternion.identity);
+                }
+            }
+         }
     }
 
     void 
     Start()
     {
         // Init Tile Position.
+
+        m_nodeGrid = GetComponent<scr_NodeGrid>();
+
         dogSpawns = new List<Vector3>();
         enemySpawns = new List<Vector3>();
         houseSpawns = new List<Vector3>();
