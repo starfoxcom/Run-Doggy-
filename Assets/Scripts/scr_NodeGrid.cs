@@ -28,18 +28,29 @@ public class scr_NodeGrid
 
     // Initializate the node grid.
     public void 
-    Init(int numCols, int numRows)
+    Init(int _numCols, int _numRows)
     {
+        numCols = _numCols;
+        numRows = _numRows;
+
         m_nodeGrid = new scr_Node[numRows,numCols];
 
-        //////////////////////////////////////////////////////////////////////////
-        // Set Connections                                                      //
-        //////////////////////////////////////////////////////////////////////////
-        for(int row = 0; row < numRows; ++row )
+        for (int row = 0; row < numRows; ++row)
         {
             for (int col = 0; col < numCols; ++col)
             {
+                m_nodeGrid[row, col] = new scr_Node();
+            }
+        }
 
+                //////////////////////////////////////////////////////////////////////////
+                // Set Connections                                                      //
+                //////////////////////////////////////////////////////////////////////////
+                for (int row = 0; row < numRows; ++row )
+        {
+            for (int col = 0; col < numCols; ++col)
+            {
+                
                 // Add Up Node.
                 if(row > 0)
                 {
@@ -49,7 +60,7 @@ public class scr_NodeGrid
                 // Add Right Node.
                 if(col < (numCols - 1))
                 {
-                    m_nodeGrid[row, col].SetRight(m_nodeGrid[row, col + 1]);
+                    m_nodeGrid[row, col].SetRight(m_nodeGrid[row, (col + 1)]);
                 }
 
                 // Add Down Node.
@@ -87,6 +98,25 @@ public class scr_NodeGrid
 
         return m_nodeGrid[row, col];
     }
+
+    public int
+    NUMROWS
+    {
+        get
+        {
+            return numRows;
+        }
+    }
+
+    public int
+    NUMCOLS
+    {
+        get
+        {
+            return numCols;
+        }
+    }
+
 
     //////////////////////////////////////////////////////////////////////////
     // Private Methods                                                      //
