@@ -11,6 +11,13 @@ public class scr_gameMasterHelper : MonoBehaviour
     public Sprite[] TformTiles;
     public Sprite[] codoTiles;
     public Sprite[] Xtile;
+    public Sprite[] relojTile;
+    public Sprite[] house0Tiles;
+    public Sprite[] house1Tiles;
+    public Sprite[] house2Tiles;
+    public Sprite[] house3Tiles;
+
+    public GameObject Audio;
 
     private FASEDIA m_fase;
 
@@ -46,16 +53,23 @@ public class scr_gameMasterHelper : MonoBehaviour
     void Update()
     {
         m_master.update();
-
         if(m_fase != m_master.FASE)
         {
             m_fase = m_master.FASE;
-
+            if (!Audio.GetComponent<AudioSource>().isPlaying)
+            {
+                Audio.GetComponent<AudioSource>().Play();
+            }
             ChangeSpritesColor("cesped", cespedTiles);
             ChangeSpritesColor("calle", CalleTiles);
             ChangeSpritesColor("T", TformTiles);
             ChangeSpritesColor("codo", codoTiles);
             ChangeSpritesColor("interseccion", Xtile);
+            ChangeSpritesColor("reloj", relojTile);
+            ChangeSpritesColor("house0", house0Tiles);
+            ChangeSpritesColor("house1", house1Tiles);
+            ChangeSpritesColor("house2", house2Tiles);
+            ChangeSpritesColor("house3", house3Tiles);
         }
 
     }
