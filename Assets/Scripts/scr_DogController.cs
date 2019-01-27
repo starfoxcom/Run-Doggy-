@@ -35,9 +35,9 @@ public class scr_DogController
 
     private Rigidbody2D m_rb;
 
-    static float MIN_RADIUS_NODE_DETECTION = 0.25f;
+    static float MIN_RADIUS_NODE_DETECTION = 0.05f;
 
-    static float SPEED = 5.0f;
+    static float SPEED = 50.0f;
     
     //////////////////////////////////////////////////////////////////////////
     // Public Methods                                                       //
@@ -60,9 +60,6 @@ public class scr_DogController
     // Start is called before the first frame update
     void Start()
     {
-        m_state = DOGPHASE.None;
-        m_directionIndex = DOGDIRECTION.None;
-
         m_rb = GetComponent<Rigidbody2D>();
         return;
     }
@@ -70,6 +67,9 @@ public class scr_DogController
     // Update is called once per frame
     void Update()
     {
+        if(m_target == null)
+        { return; }
+
         // Check Inputs.
         InputController();
 
@@ -92,12 +92,7 @@ public class scr_DogController
     private void 
     IdleUpdate()
     {
-        m_rb.velocity = Vector3.zero;
-
-        if(m_target == null)
-        {
-            return;
-        }
+        m_rb.velocity = Vector3.zero;        
 
         if(transform.position != m_target.POSITION)
         {
@@ -109,15 +104,9 @@ public class scr_DogController
 
     private void
     MovingUpdate()
-    {        
-        // Security Check.
-        if (m_target == null)
-        {
-            return;
-        }
-
+    {  
         // Vector to target.
-        Vector3 vecToTarget = transform.position - m_target.POSITION;
+        Vector3 vecToTarget = m_target.POSITION - transform.position;
 
         // Direction.
         m_direction = vecToTarget.normalized;        
@@ -130,7 +119,7 @@ public class scr_DogController
         }
 
         // Velocity.
-        m_rb.velocity = m_direction * SPEED;
+        m_rb.velocity = m_direction * SPEED * Time.deltaTime;
 
         return;
     }
@@ -138,7 +127,6 @@ public class scr_DogController
     private void
     InputController()
     {
-
         // UP
         if(Input.GetKeyDown(KeyCode.W))
         {
@@ -178,45 +166,74 @@ public class scr_DogController
         switch(m_directionIndex)
         {
             case DOGDIRECTION.Up:
-                if(m_target.UP != null)
+                if (m_target.UP == null)
+                {
+                    m_state = DOGPHASE.Idle;
+                    return;
+                }
+
+                if (m_target.UP.NODETYPE == NODE_TYPE.kStreet)
                 {
                     m_target = m_target.UP;
+                    return;
                 }
                 else
                 {
                     m_state = DOGPHASE.Idle;
+                    return;
                 }
-                return;
             case DOGDIRECTION.Right:
-                if (m_target.RIGHT != null)
+                if (m_target.RIGHT == null)
+                {
+                    m_state = DOGPHASE.Idle;
+                    return;
+                }
+
+                if (m_target.RIGHT.NODETYPE == NODE_TYPE.kStreet)
                 {
                     m_target = m_target.RIGHT;
+                    return;
                 }
                 else
                 {
                     m_state = DOGPHASE.Idle;
+                    return;
                 }
-                return;
             case DOGDIRECTION.Down:
-                if (m_target.DOWN != null)
+                if (m_target.DOWN == null)
+                {
+                    m_state = DOGPHASE.Idle;
+                    return;
+                }
+
+                if (m_target.DOWN.NODETYPE == NODE_TYPE.kStreet)
                 {
                     m_target = m_target.DOWN;
+                    return;
                 }
                 else
                 {
                     m_state = DOGPHASE.Idle;
+                    return;
                 }
                 return;
             case DOGDIRECTION.Left:
-                if (m_target.LEFT != null)
+                if (m_target.LEFT == null)
+                {
+                    m_state = DOGPHASE.Idle;
+                    return;                    
+                }
+
+                if(m_target.LEFT.NODETYPE == NODE_TYPE.kStreet)
                 {
                     m_target = m_target.LEFT;
+                    return;
                 }
                 else
                 {
                     m_state = DOGPHASE.Idle;
+                    return;
                 }
-                return;
             default:
                 m_state = DOGPHASE.Idle;
                 return;

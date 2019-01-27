@@ -43,10 +43,13 @@ public class scr_gameMasterHelper : MonoBehaviour
     void Update()
     {
         m_master.update();
+
+        /*
         ChangeSpritesColor("cesped", cespedTiles);
         ChangeSpritesColor("calle", CalleTiles);
         ChangeSpritesColor("T", TformTiles);
         ChangeSpritesColor("codo", codoTiles);
         ChangeSpritesColor("interseccion", Xtile);
+        */
     }
 }
