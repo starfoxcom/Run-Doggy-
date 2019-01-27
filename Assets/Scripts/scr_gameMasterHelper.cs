@@ -12,18 +12,20 @@ public class scr_gameMasterHelper : MonoBehaviour
     public Sprite[] codoTiles;
     public Sprite[] Xtile;
 
+    private FASEDIA m_fase;
+
     void ChangeSpritesColor(string tag, Sprite[] sprites)
     {
         GameObject[] objetos = GameObject.FindGameObjectsWithTag(tag);
 
-        if (m_master.FASE == FASEDIA.tarde)
+        if (m_fase == FASEDIA.tarde)
         {
             foreach (GameObject tile in objetos)
             {
                 tile.GetComponent<SpriteRenderer>().sprite = sprites[0];
             }
         }
-        else if (m_master.FASE == FASEDIA.mediaNoche)//noche solo asi para debuggeo
+        else if (m_fase == FASEDIA.mediaNoche) //areglar eso deberia estar en fase.noche
         {
             foreach (GameObject tile in objetos)
             {
@@ -35,6 +37,7 @@ public class scr_gameMasterHelper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_fase = FASEDIA.dia;
         m_master = scr_gameMaster.GetSingleton();
         m_master.init();
     }
@@ -43,10 +46,17 @@ public class scr_gameMasterHelper : MonoBehaviour
     void Update()
     {
         m_master.update();
-        ChangeSpritesColor("cesped", cespedTiles);
-        ChangeSpritesColor("calle", CalleTiles);
-        ChangeSpritesColor("T", TformTiles);
-        ChangeSpritesColor("codo", codoTiles);
-        ChangeSpritesColor("interseccion", Xtile);
+
+        if(m_fase != m_master.FASE)
+        {
+            m_fase = m_master.FASE;
+
+            ChangeSpritesColor("cesped", cespedTiles);
+            ChangeSpritesColor("calle", CalleTiles);
+            ChangeSpritesColor("T", TformTiles);
+            ChangeSpritesColor("codo", codoTiles);
+            ChangeSpritesColor("interseccion", Xtile);
+        }
+
     }
 }
