@@ -311,6 +311,7 @@ MonoBehaviour:
   endsprite:
   - {fileID: 559260057}
   - {fileID: 1638948148}
+  - {fileID: 1414849393}
   m_victorySound: {fileID: 8300000, guid: d049a945d712d5a448045ea41e38014a, type: 3}
   m_loseSound: {fileID: 0}
   m_puntuacionText: {fileID: 1907856388024469770}
@@ -329,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 170415113200569761, guid: f25a0228bfe6d2a498be33a52a929b92,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 170415113200569756, guid: f25a0228bfe6d2a498be33a52a929b92,
         type: 3}
@@ -420,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1414849394
 Animator:
   serializedVersion: 3

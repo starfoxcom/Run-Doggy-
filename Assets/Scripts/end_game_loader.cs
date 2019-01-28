@@ -21,6 +21,8 @@ public class end_game_loader : MonoBehaviour
         if (scr_gameMaster.GetSingleton().STATUS == GAMESTATUS.Win)
         {
 
+            scr_gameMaster.GetSingleton().LEVEL = scr_gameMaster.GetSingleton().LEVEL + 1;
+
             //Enable sprite 0
             endsprite[0].GetComponent<SpriteRenderer>().enabled = true;
             m_bocina.clip = m_victorySound;
@@ -39,10 +41,15 @@ public class end_game_loader : MonoBehaviour
 
             //Enable sprite 1
             //endsprite[1].GetComponent<SpriteRenderer>().enabled = true;
+            endsprite[2].SetActive(true);
             endsprite[1].SetActive(true);
         }
 
         m_puntuacionText.text = "Score: " + scr_gameMaster.m_totalScore.ToString();
+        if (scr_gameMaster.GetSingleton().STATUS == GAMESTATUS.Lose)
+        {
+            scr_gameMaster.m_totalScore = 0;
+        }
     }
 
     private void Update()

@@ -374,7 +374,7 @@ public class scr_MapGenerator
         houseSpawns = new List<scr_Node>();
         m_tileInitPosition = Vector3.zero;
 
-        LoadScene("MapaTest");
+        LoadScene("MapaTest_" + scr_gameMaster.GetSingleton().LEVEL.ToString());
         instanciateDog();
         instanciateEnemies();
         instanciateHouse();
